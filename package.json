@@ -33,7 +33,7 @@
         "drag-n-drop"
     ],
     "types": "types/index.d.ts",
-    "main": "src/index.js",
+    "main": "src/distindex.js",
     "peerDependencies": {
         "moment": "^2.22.2"
     },
