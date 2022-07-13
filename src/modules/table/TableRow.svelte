@@ -64,6 +64,8 @@
                     <div class="sg-resource-title">
                         {row.model[header.property]}
                     </div>
+                {:else if header.property.includes('html')}
+                    {@html row.model[header.property]}
                 {:else}
                     {row.model[header.property]}
                 {/if}
