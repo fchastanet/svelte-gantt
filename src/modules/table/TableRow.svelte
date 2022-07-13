@@ -89,8 +89,8 @@
 
     .sg-table-body-cell {
         border-bottom: #efefef 1px solid;
-        background-color: #fff;
-        font-weight: bold;
+        background-color: rgba(0, 0, 0, 0);
+        /* font-weight: bold; */
     }
 
     .sg-resource-image {
