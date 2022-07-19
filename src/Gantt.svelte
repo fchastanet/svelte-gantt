@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount, setContext, tick, onDestroy } from 'svelte';
+    import { onMount, setContext, tick, onDestroy, getContext } from 'svelte';
     import { writable, derived } from 'svelte/store';
 
     let ganttElement: HTMLElement;
@@ -27,6 +27,8 @@
     import { onEvent, onDelegatedEvent, offDelegatedEvent } from './core/events';
     import { NoopSvelteGanttDateAdapter, getDuration } from './utils/date';
     import type { SvelteGanttDateAdapter } from './utils/date';
+
+    // const { api } = getContext('services');
 
     function assertSet(values) {
         for (const name in values) {
@@ -281,6 +283,7 @@
         api.registerEvent('tasks', 'changed');
         api.registerEvent('gantt', 'viewChanged');
         api.registerEvent('gantt', 'dateSelected');
+        api.registerEvent('tasks', 'scroll');
         api.registerEvent('tasks', 'dblclicked');
         api.registerEvent('timeranges', 'clicked');
         api.registerEvent('timeranges', 'resized');
@@ -680,7 +683,7 @@
     <Resizer x={tableWidth} on:resize="{onResize}" container={ganttElement}></Resizer>
     {/each}
 
-    <div class="sg-timeline sg-view">
+    <div class="sg-timeline sg-view" on:scroll={(e) => api['tasks'].raise.scroll(e)}>
         <div class="sg-header" bind:this={mainHeaderContainer} bind:clientHeight="{$headerHeight}" class:right-scrollbar-visible="{rightScrollbarVisible}">
             <div class="sg-header-scroller" use:horizontalScrollListener>
                 <div class="header-container" style="width:{$_width}px">

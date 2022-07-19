@@ -40,17 +40,17 @@
 <style>
     .sg-resize {
         z-index: 2;
-        background: #e9eaeb;
+        background: #6B7280;
         width: 5px;
-        cursor: col-resize;
+        /* cursor: col-resize; */
         position: absolute;
         height: 100%;
 
-        transition: width 0.2s, transform 0.2s;
+        /* transition: width 0.2s, transform 0.2s; */
     }
 
-    .sg-resize:hover {
+    /* .sg-resize:hover {
         transform: translateX(-2px);
         width: 10px;
-    }
+    } */
 </style>

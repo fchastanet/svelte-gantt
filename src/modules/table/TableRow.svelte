@@ -66,6 +66,7 @@
                     </div>
                 {:else if header.property.includes('html')}
                     {@html row.model[header.property]}
+                    <!-- {row.model[header.property]} -->
                 {:else}
                     {row.model[header.property]}
                 {/if}
@@ -78,9 +79,7 @@
         display: inline-flex;
         min-width: 100%;
         align-items: stretch;
-
         position: relative;
-
         font-weight: 400;
         font-size: 14px;
     }
@@ -100,7 +99,6 @@
         height: 2.4em;
         border-radius: 50%;
         margin-right: .6em;
-
         background: #047c69;
     }
 
@@ -114,5 +112,10 @@
 
     .sg-table-icon {
         margin-right: 0.5em;
+    }
+
+    .sg-selected {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
     }
 </style>

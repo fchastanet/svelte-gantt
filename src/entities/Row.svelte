@@ -17,4 +17,9 @@
         width: 100%;
         box-sizing: border-box;
     }
+
+    .sg-selected {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
 </style>
