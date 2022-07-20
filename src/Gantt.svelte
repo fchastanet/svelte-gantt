@@ -279,6 +279,7 @@
         api.registerEvent('tasks', 'moveEnd');
         api.registerEvent('tasks', 'change');
         api.registerEvent('tasks', 'changed');
+        api.registerEvent('tasks', 'scroll');
         api.registerEvent('gantt', 'viewChanged');
         api.registerEvent('gantt', 'dateSelected');
         api.registerEvent('tasks', 'dblclicked');
@@ -402,6 +403,10 @@
                 zooming = false;
             }
         }
+    }
+
+    function onGanttScroll(event) {
+        api['gantt'].raise.scroll(event)
     }
 
     function onDateSelected(event) {
@@ -680,7 +685,7 @@
     <Resizer x={tableWidth} on:resize="{onResize}" container={ganttElement}></Resizer>
     {/each}
 
-    <div class="sg-timeline sg-view">
+    <div class="sg-timeline sg-view" id="gantt-scroll">
         <div class="sg-header" bind:this={mainHeaderContainer} bind:clientHeight="{$headerHeight}" class:right-scrollbar-visible="{rightScrollbarVisible}">
             <div class="sg-header-scroller" use:horizontalScrollListener>
                 <div class="header-container" style="width:{$_width}px">
@@ -741,6 +746,8 @@
         display: flex;
         flex-direction: column;
         overflow-x: auto;
+        outline: 1px solid red;
+        scrollbar-color: red yellow;
     }
 
     .sg-gantt {
