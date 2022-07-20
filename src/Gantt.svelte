@@ -279,7 +279,6 @@
         api.registerEvent('tasks', 'moveEnd');
         api.registerEvent('tasks', 'change');
         api.registerEvent('tasks', 'changed');
-        api.registerEvent('tasks', 'scroll');
         api.registerEvent('gantt', 'viewChanged');
         api.registerEvent('gantt', 'dateSelected');
         api.registerEvent('tasks', 'dblclicked');
@@ -697,7 +696,7 @@
             </div>
         </div>
 
-        <div class="sg-timeline-body" bind:this={mainContainer} use:scrollable class:zooming="{zooming}" on:wheel="{onwheel}"
+        <div class="sg-timeline-body" id="sg-timeline-body" bind:this={mainContainer} use:scrollable class:zooming="{zooming}" on:wheel="{onwheel}"
          bind:clientHeight="{$visibleHeight}" bind:clientWidth="{$visibleWidth}">
             <div class="content" style="width:{$_width}px">
                 <Columns columns={columns} {columnStrokeColor} {columnStrokeWidth}/>
@@ -746,8 +745,6 @@
         display: flex;
         flex-direction: column;
         overflow-x: auto;
-        outline: 1px solid red;
-        scrollbar-color: red yellow;
     }
 
     .sg-gantt {
