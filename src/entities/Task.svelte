@@ -149,7 +149,9 @@
                 setCursor("default");
             },
             onResize: (event) => {
-                (_position.x = event.x), (_position.width = event.width), (_resizing = true);
+                if (model.resizable) {
+                    (_position.x = event.x), (_position.width = event.width), (_resizing = true);
+                }
             },
             onDrag: (event) => {
                 (_position.x = event.x), (_position.y = event.y), (_dragging = true);
@@ -212,7 +214,7 @@
 
         white-space: nowrap;
         /* overflow: hidden; */
-
+        resize: none;
         transition: background-color 0.2s, opacity 0.2s;
         pointer-events: all;
     }
@@ -248,7 +250,7 @@
         opacity: 0.5;
     }
 
-    .sg-task:hover::before {
+    /* .sg-task:hover::before {
         content: "";
         width: 4px;
         height: 50%;
@@ -278,11 +280,11 @@
         right: 0;
         border-width: 0 1px;
         z-index: 1;
-    }
+    } */
 
     .sg-task.selected {
         outline: 2px solid rgba(3, 169, 244, 0.5);
-        outline-offset: 3px;
+        /* outline-offset: 3px; */
         z-index: 1;
     }
 

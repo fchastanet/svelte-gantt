@@ -44,9 +44,10 @@
     }
 </script>
 
-{#each headers as header}
-<ColumnHeaderRow {header} baseWidth={baseHeaderWidth} baseDuration={baseHeaderDuration} on:dateSelected/>
-{/each}
+<!-- {#each headers as header} -->
+<ColumnHeaderRow header={headers[0]} baseWidth={baseHeaderWidth} baseDuration={baseHeaderDuration} on:dateSelected/>
+<ColumnHeaderRow header={headers[1]} baseWidth={baseHeaderWidth} baseDuration={baseHeaderDuration} on:dateSelected/>
+<!-- {/each} -->
 
 <style>
     

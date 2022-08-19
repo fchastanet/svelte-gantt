@@ -681,7 +681,7 @@
     {#each ganttTableModules as module}
     <svelte:component this={module} {rowContainerHeight} {paddingTop} {paddingBottom} tableWidth={tableWidth} {...$$restProps} on:init="{onModuleInit}" {visibleRows} />
 
-    <Resizer x={tableWidth} on:resize="{onResize}" container={ganttElement}></Resizer>
+    <!-- <Resizer x={tableWidth} on:resize="{onResize}" container={ganttElement}></Resizer> -->
     {/each}
 
     <div class="sg-timeline sg-view" id="gantt-scroll">
@@ -695,8 +695,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="sg-timeline-body" id="sg-timeline-body" bind:this={mainContainer} use:scrollable class:zooming="{zooming}" on:wheel="{onwheel}"
+        <!-- on:wheel="{onwheel} -->
+        <div class="sg-timeline-body" id="sg-timeline-body" bind:this={mainContainer} use:scrollable class:zooming="{zooming}"
          bind:clientHeight="{$visibleHeight}" bind:clientWidth="{$visibleWidth}">
             <div class="content" style="width:{$_width}px">
                 <Columns columns={columns} {columnStrokeColor} {columnStrokeWidth}/>

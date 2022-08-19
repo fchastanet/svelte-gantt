@@ -6,7 +6,7 @@ export interface TaskModel {
     resourceId: number; // | string
     from: any; // date
     to: any; // date
-
+    resizable: boolean;
     amountDone?: number;
     classes?: string | string[];
     label?: string;
@@ -62,6 +62,7 @@ export class TaskFactory {
         model.buttonHtml = model.buttonHtml || ''
         // enable dragging of task
         model.enableDragging = model.enableDragging === undefined ? true : model.enableDragging;
+        model.resizable = model.resizable || false
         
         const left = this.columnService.getPositionByDate(model.from) | 0;
         const right = this.columnService.getPositionByDate(model.to) | 0; 

@@ -40,13 +40,13 @@
 <style>
     .sg-resize {
         z-index: 2;
-        background: #6B7280;
-        width: 5px;
-        /* cursor: col-resize; */
+        background: rgba(250, 250, 250, 0);
+        width: 4px;
+        cursor: col-resize;
         position: absolute;
         height: 100%;
 
-        /* transition: width 0.2s, transform 0.2s; */
+        transition: width 0.2s, transform 0.2s;
     }
 
     /* .sg-resize:hover {

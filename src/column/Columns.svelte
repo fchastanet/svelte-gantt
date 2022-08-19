@@ -1,4 +1,7 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
+
+    import Column from './Column.svelte';
     /**
      * Container component for columns rendered as gantt body background
      */
@@ -6,6 +9,13 @@
 
     export let columnStrokeWidth = 1;
     export let columnStrokeColor = '#efefef';
+    let componentHeight;
+
+    onMount(() => {
+        const el = document.getElementById('container');
+    
+        componentHeight = el.clientHeight;
+    })
 
     function lineAt(ctx, x) {
         ctx.beginPath();
@@ -27,9 +37,10 @@
         ctx.lineWidth = columnStrokeWidth;
         ctx.lineCap = "square";
         ctx.strokeStyle = columnStrokeColor;
+        // ctx.fillStyle = '#a9a9a9';
         ctx.translate(0.5, 0.5);
 
-        columns.forEach(column => {
+        columns.forEach((column, index) => {
             lineAt(ctx, column.left);
         });
 
@@ -37,16 +48,31 @@
         return `url("${dataURL}")`;
     }
 
+    function alternateColumnColorCondition(index) {
+        if ((index / 8) % 1 === 0 || 
+            ((index - 1) / 8) % 1 === 0 ||
+            ((index - 2) / 8) % 1 === 0 ||
+            ((index - 3) / 8) % 1 === 0) {
+            return true
+        } else {
+            return false;
+        }
+    }
+
     let backgroundImage;
     $: {
         backgroundImage = createBackground(columns.slice(0,5));
     }
 </script>
-
-<div class="sg-columns" style="background-image:{backgroundImage};">
-	<!-- {#each columns as column}
-	<Column left={column.left} width={column.width} />
-	{/each} -->
+<!-- style="background-image:{backgroundImage};" -->
+<div id="container" class="sg-columns">
+	{#each columns as column, i}
+    {#if alternateColumnColorCondition(i)}
+            <Column left={column.left} width={column.width} />
+    {:else}
+        <Column left={column.left} width={column.width} backgroundColor={'#efefef'} />
+    {/if}
+	{/each}
 </div>
 <style>
     .sg-columns {
@@ -54,8 +80,8 @@
         height: 100%;
         width: 100%;
         overflow: hidden;
-
-        background-repeat: repeat;
-        background-position-x: -1px;
+        background-repeat: repeat-x, repeat-x;
+        background-position: left, right;
+        background-blend-mode: multiply;
     }
 </style>

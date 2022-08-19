@@ -115,12 +115,18 @@
 
     }
 </script>
-
+<!-- on:click="{() => dispatch('dateSelected', { from: _header.from, to: _header.to, unit: _header.unit })}" -->
 <div class="column-header-row">
-    {#each _headers as _header}
-        <div class="column-header-cell" class:sticky={header.sticky} style="width:{_header.width}px" on:click="{() => dispatch('dateSelected', { from: _header.from, to: _header.to, unit: _header.unit })}">
+    {#each _headers as _header, i}
+    {#if _header.unit === 'hour' && i <= 167}
+        <div class="column-header-cell" class:sticky={header.sticky} style="width:{_header.width}px">
             <div class="column-header-cell-label">{_header.label || 'N/A'}</div>
         </div>
+    {:else if _header.unit === 'day' && i <= 6}
+        <div class="column-header-cell day" class:sticky={header.sticky} style="width:{_header.width}px">
+            <div class="column-header-cell-label">{_header.label || 'N/A'}</div>
+        </div>
+    {/if}
     {/each}
 </div>
 <style>
@@ -144,18 +150,18 @@
         font-size: 1em;    
         font-size: 14px;
         font-weight: 300;
-        transition: background 0.2s;
+        /* transition: background 0.2s; */
 
-        cursor: pointer;     
+        /* cursor: pointer;      */
         user-select: none;
 
-        border-right: #efefef 1px solid;
-        border-bottom: #efefef 1px solid;
+        border-right: #777777 1px solid;
+        border-bottom: #777777 1px solid;
     }
 
-    .column-header-cell:hover {
+    /* .column-header-cell:hover {
         background: #f9f9f9;
-    }
+    } */
 
     .column-header-cell.sticky > .column-header-cell-label {
         position: sticky;
