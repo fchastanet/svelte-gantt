@@ -794,8 +794,4 @@
     .content {
         position: relative;
     }
-
-    :global(*) {
-        box-sizing: border-box;
-    }
 </style>
